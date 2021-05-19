@@ -3,9 +3,8 @@ package com.example.hiltexercise.ui.main
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.hiltexercise.R
 import com.example.hiltexercise.data.Repository
@@ -17,12 +16,14 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SecondFragment : Fragment(R.layout.fragment_second) {
 
+    private val mainViewModel by viewModels<MainViewModel>()
+
     @Inject
     lateinit var repository : Repository
 
     @AppHash
     @Inject
-    lateinit var applicationHash: String
+    lateinit var appHash: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,6 +32,6 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
             findNavController().navigate(R.id.action_secondFragment_to_mainFragment)
         }
 
-        Log.d("SecondFragment", applicationHash)
+        Log.d("SecondFragment", appHash)
     }
 }
